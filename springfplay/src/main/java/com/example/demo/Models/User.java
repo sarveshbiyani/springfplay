@@ -3,18 +3,30 @@ package com.example.demo.Models;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class User {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
 	private String username;
 	private String password;
 //implement roles
-	private Set<Object> roles;
-	
+	private Set<Role> roles;
+
 	public Integer getUserId() {
 		return userId;
+	}
+
+	public User(Integer userId, String username, String password, Set<Role> roles) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
 	}
 
 	public void setUserId(Integer userId) {
@@ -37,21 +49,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Object> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Object> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
-	public User(Integer userId, String username, String password, Set<Object> roles) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.roles = roles;
-	}
-
-	
 }
